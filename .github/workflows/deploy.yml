@@ -2,6 +2,11 @@ name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      deploy-netlify:
+        type: boolean
+        default: true
+        description: "Enable netlify deployment"
 
 jobs:
   deploy:
@@ -22,6 +27,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Netlify
+        if: ${{ inputs.deploy-netlify }}
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
