@@ -9,7 +9,6 @@ const App = () => {
         <h1 className="text-xl font-bold text-center">🚀 Rick and Morty - CI/CD practice webapp</h1>
         <h2 className="text-lg font-bold text-center">Deployed with Netlify</h2>
         <h2 className="text-lg font-bold text-center">Deployed with Vercel</h2>
-        asd
       </div>
       <Outlet />
     </div>
