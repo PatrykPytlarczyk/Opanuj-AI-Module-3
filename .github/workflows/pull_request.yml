@@ -6,7 +6,9 @@ on:
       - master
 
 jobs:
-  deploy:
+  pr-check:
+    environment:
+      name: 'Preview'
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
