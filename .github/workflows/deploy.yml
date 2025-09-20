@@ -11,6 +11,5 @@ jobs:
     secrets: inherit
 
   deploy-vercel:
-    needs: deploy-netlify
     uses: ./.github/workflows/deploy-vercel.yml
     secrets: inherit
