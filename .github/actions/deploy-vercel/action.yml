@@ -31,6 +31,8 @@ runs:
         vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
         vercel build --token=${{ inputs.vercel-token }}
         DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
+        DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
+        echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       shell: bash
 
     - name: Comment a pull request with preview Vercel URL
