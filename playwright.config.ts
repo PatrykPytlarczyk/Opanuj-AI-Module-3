@@ -21,7 +21,7 @@ export default defineConfig({
   use: {
     baseURL: (() => {
       if (process.env.CI) {
-        console.log('E2E_BASE_URLAAA:', process.env.E2E_BASE_URL);
+        console.log('E2E_BASE_URLAAA:', process.env.VERCEL_AUTOMATION_BYPASS_SECRET);
         return process.env.E2E_BASE_URL;
       }
       return 'http://localhost:3000';
