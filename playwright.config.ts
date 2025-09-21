@@ -19,8 +19,14 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 5_000 },
   use: {
-    // baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
-    baseURL: 'https://opanuj-ai-module-3-otla59hzn-patrykpytlarczyks-projects.vercel.app',
+    baseURL: (() => {
+      if (process.env.CI) {
+        console.log('E2E_BASE_URLAAA:', process.env.E2E_BASE_URL);
+        return process.env.E2E_BASE_URL;
+      }
+      return 'http://localhost:3000';
+    })(),
+    // baseURL: 'https://opanuj-ai-module-3-otla59hzn-patrykpytlarczyks-projects.vercel.app',
     trace: 'on-first-retry',
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
