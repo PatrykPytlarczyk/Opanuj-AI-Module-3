@@ -23,6 +23,10 @@ export default defineConfig({
     trace: 'on-first-retry',
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
+    extraHTTPHeaders: {
+			"x-vercel-protection-bypass":
+				process.env.VERCEL_AUTOMATION_BYPASS_SECRET!,
+		},
   },
   projects: [
     {
