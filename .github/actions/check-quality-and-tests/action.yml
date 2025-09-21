@@ -6,6 +6,8 @@ runs:
   steps:
     - name: Lint code
       run: npm run lint
+      shell: bash
 
     - name: Run unit tests
       run: npm run test
+      shell: bash
