@@ -33,7 +33,7 @@ runs:
       if: ${{inputs.mode == 'production'}}
       uses: ./.github/actions/run-e2e-tests
       env: 
-        E2E_BASE_URL: `DEPLOY_URL` 
+        E2E_BASE_URL: ${{ env.DEPLOY_URL }}
 
     - name: PREVIEW Vercel Deployment
       if: ${{ inputs.mode == 'preview' }}
