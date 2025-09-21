@@ -4,6 +4,11 @@ description: Composite action to run playwright e2e tests
 runs:
   using: 'composite'
   steps:
+
+    - name: print base url
+      run: echo "$E2E_BASE_URL"
+      shell: bash
+
     - name: run e2e tests
       run: npm run test:e2e
       shell: bash
