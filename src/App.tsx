@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Outlet } from 'react-router-dom';
+import VersionBadge from './components/VersionBadge';
 
 const App = () => {
   return (
@@ -12,6 +13,8 @@ const App = () => {
         testing ci/cd
       </div>
       <Outlet />
+
+      <VersionBadge/>
     </div>
   );
 };
