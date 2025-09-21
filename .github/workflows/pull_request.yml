@@ -20,11 +20,8 @@ jobs:
       - name: Configure node
         uses: ./.github/actions/setup-project
 
-      - name: Lint code
-        run: npm run lint
-
-      - name: Run unit tests
-        run: npm run test
+      - name: Check the code quality
+        uses: ./.github/actions/check-quality-and-tests
 
       - name: Build app
         run: npm run build
