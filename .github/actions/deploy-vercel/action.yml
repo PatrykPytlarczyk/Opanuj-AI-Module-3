@@ -26,6 +26,7 @@ runs:
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
         echo "E2E_BASE_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        echo "VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET" >> $GITHUB_ENV
       env:
         VITE_ENVIRONMENT: 'Staging'
       shell: bash
@@ -33,6 +34,8 @@ runs:
     - name: Run e2e tests on Vercel PROD env
       if: ${{inputs.mode == 'production'}}
       uses: ./.github/actions/run-e2e-tests
+      env:
+        VERCEL_AUTOMATION_BYPASS_SECRET: ${{ env.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
     - name: PREVIEW Vercel Deployment
       if: ${{ inputs.mode == 'preview' }}
@@ -43,6 +46,7 @@ runs:
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
         echo "E2E_BASE_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        echo "VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET" >> $GITHUB_ENV
       env:
         VITE_ENVIRONMENT: 'Preview'
       shell: bash
@@ -63,3 +67,5 @@ runs:
     - name: Run e2e tests on Vercel PREVIEW env
       if: ${{inputs.mode == 'preview'}}
       uses: ./.github/actions/run-e2e-tests
+      env:
+        VERCEL_AUTOMATION_BYPASS_SECRET: ${{ env.VERCEL_AUTOMATION_BYPASS_SECRET }}
