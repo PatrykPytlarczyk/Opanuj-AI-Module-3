@@ -11,4 +11,6 @@ runs:
 
     - name: run e2e tests
       run: npm run test:e2e
+      env:
+        E2E_BASE_URL: "$E2E_BASE_URL"
       shell: bash
