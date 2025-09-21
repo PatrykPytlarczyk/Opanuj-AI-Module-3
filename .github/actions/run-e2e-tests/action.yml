@@ -6,11 +6,11 @@ runs:
   steps:
 
     - name: print base url
-      run: echo "$E2E_BASE_URL"
+      run: echo "$VERCEL_AUTOMATION_BYPASS_SECRET"
       shell: bash
 
     - name: run e2e tests
       run: npm run test:e2e
       env:
-        E2E_BASE_URL: "$E2E_BASE_URL"
+        E2E_BASE_URL: ${{ env.DEPLOY_URL}}
       shell: bash

@@ -19,7 +19,8 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 5_000 },
   use: {
-    baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
+    // baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
+    baseURL: 'https://opanuj-ai-module-3-otla59hzn-patrykpytlarczyks-projects.vercel.app',
     trace: 'on-first-retry',
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
