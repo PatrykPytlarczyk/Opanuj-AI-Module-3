@@ -1,0 +1,31 @@
+name: Deploy - AWS Cloud
+
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy-aws:
+    environment:
+      name: 'Production'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: ./.github/actions/setup-project
+
+      - name: Check the code quality
+        uses: ./.github/actions/check-quality-and-tests
+
+      - name: Build app
+        run: npm run build
+        env:
+          VITE_ENVIRONMENT: 'Production'
+
+      - name: Deploy to AWS
+        run: aws s3 sync dist s3://piniu-test-bucket
+
