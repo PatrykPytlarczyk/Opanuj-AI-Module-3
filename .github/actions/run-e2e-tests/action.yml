@@ -1,0 +1,18 @@
+name: Run e2e tests
+description: Composite action to run playwright e2e tests
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: print base url
+      run: echo "$VERCEL_ORG_ID"
+      shell: bash
+
+    - name: print base url
+      run: echo "$VERCEL_AUTOMATION_BYPASS_SECRET"
+      shell: bash
+
+    - name: run e2e tests
+      run: npm run test:e2e
+      shell: bash
