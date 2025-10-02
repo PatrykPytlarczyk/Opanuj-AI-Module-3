@@ -1,11 +1,9 @@
 name: Deploy - AWS Cloud
 
-
 on:
-  workflow_dispatch:
+  workflow_call: 
 
 jobs:
-
   deploy-aws:
     environment:
       name: 'Production'
@@ -32,6 +30,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: 'eu-central-1'
+      
+      - name: Terraform apply
+        uses: ./.github/actions/terraform-apply
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy to AWS
         run: aws s3 sync dist s3://piniu-test-bucket
